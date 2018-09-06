@@ -1951,7 +1951,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1371602981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -98.5}
+  m_LocalPosition: {x: 0, y: 0, z: -79}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 729208366}
@@ -1968,8 +1968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275e2bef9fe29d8419864a63e560960a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  scoreKeeper: {fileID: 0}
+  ball: {fileID: 140195074}
+  scoreKeeper: {fileID: 872489839}
 --- !u!82 &1371602985
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2352,7 +2352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4bf66c667c55e44a93c3d8eaf258ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factor: 0.05
+  factor: 0.15
 --- !u!1 &2137913529
 GameObject:
   m_ObjectHideFlags: 0
