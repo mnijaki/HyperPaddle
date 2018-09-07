@@ -77,8 +77,20 @@ public class LevelChanger:MonoBehaviour
   // Load next level.
   public void LvlLoadNext()
   {
-    LevelManager.Instance.LvlLoadNext(0.0F,true);
+    LevelManager.Instance.LvlLoadNext(0.0F,false);
   } // End of LvlLoadNext
+
+  // Load top scores.
+  public void TopScoresLoad()
+  {
+    LevelManager.Instance.TopScoresLoad(0.0F);
+  } // End of TopScoresLoad
+
+  // Load top scores with name input.
+  public void TopScoresNameLoad()
+  {
+    LevelManager.Instance.TopScoresNameLoad(0.0F);
+  } // End of TopScoresNameLoad
 
   #endregion
 

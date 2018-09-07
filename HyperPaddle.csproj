@@ -303,16 +303,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Ball\Scripts\Ball.cs" />
+    <Compile Include="Assets\EnemyPaddle\Scripts\EnemyPaddle.cs" />
+    <Compile Include="Assets\GameCamera\Scripts\GameCamera.cs" />
     <Compile Include="Assets\General\Scripts\LevelChanger.cs" />
     <Compile Include="Assets\General\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Ball.cs" />
-    <Compile Include="Assets\Scripts\CameraControl.cs" />
-    <Compile Include="Assets\Scripts\GlobalScoreboard.cs" />
-    <Compile Include="Assets\Scripts\LooseCollider.cs" />
-    <Compile Include="Assets\Scripts\PaddleAI.cs" />
-    <Compile Include="Assets\Scripts\PlayerPaddle.cs" />
-    <Compile Include="Assets\Scripts\ScoreBoardView.cs" />
-    <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
+    <Compile Include="Assets\General\Scripts\MusicChanger.cs" />
+    <Compile Include="Assets\General\Scripts\MusicManager.cs" />
+    <Compile Include="Assets\General\Scripts\ScoreKeeper.cs" />
+    <Compile Include="Assets\LooseCollider\Scripts\LooseCollider.cs" />
+    <Compile Include="Assets\PlayerPaddle\Scripts\PlayerPaddle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

@@ -175,9 +175,9 @@ public class LevelManager:MonoBehaviour
     // Make sure that game object will not be destroyed after loading next scene.
     GameObject.DontDestroyOnLoad(Instance.gameObject);
     // Get loading panel.
-    Instance.loading_panel=GameObject.FindGameObjectWithTag("loading_screen").GetComponentsInChildren<Transform>(true)[1].gameObject;
+  //  Instance.loading_panel=GameObject.FindGameObjectWithTag("loading_screen").GetComponentsInChildren<Transform>(true)[1].gameObject;
     // Get progress slider.
-    Instance.progress_slider=Instance.loading_panel.GetComponentInChildren<Slider>();
+  //  Instance.progress_slider=Instance.loading_panel.GetComponentInChildren<Slider>();
   } // End of Start
 
   // Load scene with delay.
