@@ -1,25 +1,54 @@
 using UnityEngine;
-using System.Collections;
 
-public class CameraControl : MonoBehaviour {
-	[Range (0.05F,0.5F)]
-	public float factor= 0.05F;
-	
-	public void ShiftAroundPaddle (Vector3 position) {
-		print ("Moving camera. Paddle position: " + position);
-		Vector3 newCameraPos;
-		newCameraPos.x = Mathf.Clamp(position.x * factor,-10,10);
-		newCameraPos.y = Mathf.Clamp(position.y * factor,-10,10);
-		newCameraPos.z = transform.position.z; // i.e. don't move in z
-		
-		transform.position = newCameraPos;
-	}
-	
-	void Update () {
-		//if (Input.GetKeyDown(KeyCode.UpArrow)) {
-		//	factor = Mathf.Clamp(factor + 0.05f, 0.05f, 0.5f);
-		//} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-		//	factor = Mathf.Clamp(factor - 0.05f, 0.05f, 0.5f);
-		//}
-	}
-}
+// Camera control.
+public class CameraControl : MonoBehaviour
+{
+  // ---------------------------------------------------------------------------------------------------------------------
+  // Serialized fields
+  // ---------------------------------------------------------------------------------------------------------------------
+  #region
+
+  // Shift factor of camera movement.
+  [SerializeField]
+  [Range (0.05F,0.5F)]
+  [Tooltip("Shift factor of camera movement")]
+	private float shift_factor = 0.05F;
+
+  #endregion
+
+
+  // ---------------------------------------------------------------------------------------------------------------------
+  // Public methods                  
+  // ---------------------------------------------------------------------------------------------------------------------
+  #region
+
+  // Shift camera around paddle position.
+  public void ShiftAroundPaddle(Vector3 pos)
+  {
+		this.transform.position = new Vector3(Mathf.Clamp(pos.x * this.shift_factor,-10,10),
+                                          Mathf.Clamp(pos.y * this.shift_factor,-10,10),
+                                          this.transform.position.z);
+  } // End of ShiftAroundPaddle
+
+  #endregion
+
+
+  // ---------------------------------------------------------------------------------------------------------------------
+  // Public methods                  
+  // ---------------------------------------------------------------------------------------------------------------------
+  #region
+
+  // Update (called once per frame).
+  private void Update()
+  {
+    //if (Input.GetKeyDown(KeyCode.UpArrow)) 
+    //{
+    //	factor = Mathf.Clamp(factor + 0.05f, 0.05f, 0.5f);
+    //} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+    //	factor = Mathf.Clamp(factor - 0.05f, 0.05f, 0.5f);
+    //}
+  } // End of Update
+
+  #endregion
+
+} // End of CameraControl

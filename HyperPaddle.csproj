@@ -303,12 +303,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\General\Scripts\LevelChanger.cs" />
+    <Compile Include="Assets\General\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\GlobalScoreboard.cs" />
     <Compile Include="Assets\Scripts\LooseCollider.cs" />
     <Compile Include="Assets\Scripts\PaddleAI.cs" />
     <Compile Include="Assets\Scripts\PlayerPaddle.cs" />
+    <Compile Include="Assets\Scripts\ScoreBoardView.cs" />
     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
   </ItemGroup>
   <ItemGroup>

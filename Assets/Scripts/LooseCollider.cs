@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LooseCollider : MonoBehaviour {
-	public Ball ball;
-	public ScoreKeeper scoreKeeper;
+// Loose collider.
+public class LooseCollider : MonoBehaviour
+{
+  // On collision.
+	private void OnTriggerEnter()
+  {
+    // Play audio source.
+		this.GetComponent<AudioSource>().Play();
+    // Notify score keeper after delay.
+		Invoke("NotifyScoreKeeper",2.5f);
+  } // End Of OnTriggerEnter
 
-	void OnTriggerEnter () {
-		GetComponent<AudioSource>().Play ();
-		//print ("Ball's z velocity " + ball.GetComponent<Rigidbody>().velocity.z);
-		//Invoke("NotifyScoreKeeper",2.5f);
-	}
-	void NotifyScoreKeeper(){
-	//	scoreKeeper.BallOut();
-	}
-}
+  // Notify score keeper.
+  private void NotifyScoreKeeper()
+  {
+		GameObject.FindObjectOfType<ScoreKeeper>().BallOut();
+  } // End of NotifyScoreKeeper
+
+} // End of LooseCollider

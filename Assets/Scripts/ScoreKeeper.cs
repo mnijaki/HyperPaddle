@@ -11,37 +11,43 @@ public class ScoreKeeper : MonoBehaviour
 
 #endregion
 
-  public LevelManager levelManager;
-
-  //public GlobalScoreboard scoreboard;
-
+  public GlobalScoreboard global_scoreboard;
   public TextMeshProUGUI score_txt;
 	private int score = 0;
 	
 	// Use this for initialization
-	void Start () {
+	void Start()
+  {
 		DontDestroyOnLoad(this.gameObject);
     this.score_txt.text = this.score.ToString();
 	}
 	
-	public void Add (int amount) {
+	public void Add(int amount)
+  {
     this.score += amount;
     // We update here rather than in Update
     // That way we only call when needed not every frame
     this.score_txt.text = this.score.ToString();
 	}
 	
-	public int GetScore () {
+	public int GetScore()
+  {
 		// We're doing this to be good
 		return this.score;
 	}
-	
-	//public void BallOut(){
-	//	if(scoreboard.IsHighScore(score)){
-	//		scoreboard.SetCurrentScore(score);
-	//		levelManager.LoadLevel("Enter Name");
-	//	}else{
-	//		levelManager.LoadLevel("Loose Menu");
-	//	}
-	//}
+
+  public void BallOut()
+  {
+    if(this.global_scoreboard.IsHighScore(this.score))
+    {
+      this.global_scoreboard.SetCurrentScore(this.score);
+      
+      // Load h
+     // LevelManager.Instance.
+    }
+    else
+    {
+     //this.level_manager.LoadLevel("Loose");
+    }
+  }
 }
