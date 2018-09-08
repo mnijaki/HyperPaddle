@@ -13,10 +13,17 @@ public class NameEntry : MonoBehaviour
   [SerializeField]
   [Tooltip("Input field for player name")]
   private InputField input_field;
+
+  #endregion
+
+
+  // ---------------------------------------------------------------------------------------------------------------------  
+  // Private fields
+  // ---------------------------------------------------------------------------------------------------------------------
+  #region
+
   // Scoreboard.
-  [SerializeField]
-  [Tooltip("Scoreboard")]
-  private Scoreboard scoreboard;
+  private ScoreboardLocal scoreboard;
 
   #endregion
 
@@ -29,8 +36,10 @@ public class NameEntry : MonoBehaviour
   // Initialization.
   private void Start()
   {
+    // Get scoreboard.
+    this.scoreboard=GameObject.FindObjectOfType<ScoreboardLocal>();
     // Add listener to submit/end editing of input field.
-    this.input_field.onEndEdit.AddListener(delegate { OnSaveName(this.input_field.text); });
+    this.input_field.onEndEdit.AddListener(delegate { OnSave(this.input_field.text); });
     // * This is other way of doing the same. See documentation: 
     // InputField.onEndEdit -> SubmitEvent -> Events.UnityEvent_1 -> UnityEvent<T0> 
     // <T0> means that this even will automatically have one parametr attached to it, in this case input value (text).
@@ -41,14 +50,14 @@ public class NameEntry : MonoBehaviour
     // this.save_btn.onClick.AddListener(this.OnSave);
   } // End of Start
 
-  // Event - on save name.
-  void OnSaveName(string player_name)
+  // Event - on save.
+  void OnSave(string player_name)
   {
     // Claim top score by player.
-    this.scoreboard.TopScoreClaim(player_name);
+    this.scoreboard.TopScoreClaim(player_name," ... ");
     // Load top scores scene.
     LevelManager.Instance.TopScoresLoad(0.0F);
-  } // End of OnSaveName
+  } // End of OnSave
 
   #endregion
 

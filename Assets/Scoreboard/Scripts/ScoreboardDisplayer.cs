@@ -8,25 +8,14 @@ using UnityEngine.UI;
 public class ScoreboardDisplayer : MonoBehaviour
 {
   // ---------------------------------------------------------------------------------------------------------------------  
-  // Serialized fields
-  // ---------------------------------------------------------------------------------------------------------------------
-  #region
-
-  // Scoreboard.
-  [SerializeField]
-  [Tooltip("Scoreboard")]
-  private Scoreboard scoreboard;
-
-  #endregion
-
-
-  // ---------------------------------------------------------------------------------------------------------------------  
   // Private fields
   // ---------------------------------------------------------------------------------------------------------------------
   #region
 
   // Top scores text.
   private Text top_scores_txt;
+  // Scoreboard.
+  private ScoreboardLocal scoreboard;
 
   #endregion
 
@@ -39,17 +28,23 @@ public class ScoreboardDisplayer : MonoBehaviour
   // Initialization.
   private void Start()
   {
+    // Get scoreboard.
+    this.scoreboard=GameObject.FindObjectOfType<ScoreboardLocal>();
     // Get top scores text.
     this.top_scores_txt=this.GetComponent<Text>();
     // Get top scores.
-    SortedList<int,string> top_scores = this.scoreboard.TopScoresGet();
+    SortedList<int,ScoreboardData> top_scores = this.scoreboard.TopScoresGet();
     // String builder holding top scores.
     StringBuilder tmp = new StringBuilder("");
     // Loop over top 5 scores.
-    foreach(KeyValuePair<int,string> score in top_scores.Reverse().Take(5))
+    foreach(KeyValuePair<int,ScoreboardData> item in top_scores)
+    {
+      Debug.Log(item.Value.player_name +" (" +item.Value.score +")  " +item.Value.player_nick +"  " +item.Value.score_datetime);
+    }
+    foreach(KeyValuePair<int,ScoreboardData> item in top_scores.Reverse().Take(5))
     {
       // Actualize text.
-      tmp.AppendLine(score.Value + " (" + score.Key + ")");
+      tmp.AppendLine(item.Value.player_name +" (" +item.Value.score +")  " +item.Value.player_nick +"  " +item.Value.score_datetime);
     }
     // Set text.
     this.top_scores_txt.text = tmp.ToString();

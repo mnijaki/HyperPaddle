@@ -315,7 +315,9 @@
     <Compile Include="Assets\NameEntry\Scripts\NameEntry.cs" />
     <Compile Include="Assets\PlayerPaddle\Scripts\PlayerPaddle.cs" />
     <Compile Include="Assets\Scoreboard\Scripts\Scoreboard.cs" />
+    <Compile Include="Assets\Scoreboard\Scripts\ScoreboardData.cs" />
     <Compile Include="Assets\Scoreboard\Scripts\ScoreboardDisplayer.cs" />
+    <Compile Include="Assets\Scoreboard\Scripts\ScoreboardLocal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 // Scoreboard.
 public class Scoreboard : MonoBehaviour
@@ -12,9 +13,10 @@ public class Scoreboard : MonoBehaviour
   // Current top score (shared between all instances of 'Scoreboard').
   public static int top_score = 0;
   // List of top scores (shared between all instances of 'Scoreboard').
-  public static SortedList<int,string> top_scores = new SortedList<int,string>();
+  public static SortedList<int,ScoreboardData> top_scores = new SortedList<int,ScoreboardData>();
 
   #endregion
+
 
   // ---------------------------------------------------------------------------------------------------------------------  
   // Public methods                  
@@ -43,18 +45,18 @@ public class Scoreboard : MonoBehaviour
   } // End of IsTopScore
 
   // Claim top score.
-  public void TopScoreClaim(string name)
+  public void TopScoreClaim(string player_name,string player_nick)
   {
-    Debug.Log("score ["+top_score+"] claimed by "+name);
+    Debug.Log("claimed");
+    // Create new score data.
+    ScoreboardData scoreboard_data = new ScoreboardData(top_score,player_name,player_nick,DateTime.Now);
     // Add score to list.
-    top_scores.Add(top_score,name);
+    top_scores.Add(top_score,scoreboard_data);
   } // End of TopScoreClaim
 
   // Return list of top scores.
-  public SortedList<int, string> TopScoresGet()
+  public SortedList<int,ScoreboardData> TopScoresGet()
   {
-    // TO_DO:change to class that have also date
-
     // Return top scores.
     return top_scores;
   } // End of TopScoresGet

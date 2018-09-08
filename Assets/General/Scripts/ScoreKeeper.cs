@@ -31,7 +31,7 @@ public class ScoreKeeper : MonoBehaviour
   // Score text.
   private TextMeshProUGUI score_txt;
   // Scoreboard.
-  Scoreboard scoreboard;
+  ScoreboardLocal scoreboard;
   // Current score.
   private int score = 0;
 
@@ -122,7 +122,7 @@ public class ScoreKeeper : MonoBehaviour
     // Set score.
     Instance.score_txt.text = Instance.score.ToString();
     // Get scoreboard.
-    Instance.scoreboard=GameObject.FindObjectOfType<Scoreboard>();
+    Instance.scoreboard=GameObject.FindObjectOfType<ScoreboardLocal>();
   } // End of OnLevelWasLoaded
 
   #endregion
