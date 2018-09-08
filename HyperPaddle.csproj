@@ -312,7 +312,10 @@
     <Compile Include="Assets\General\Scripts\MusicManager.cs" />
     <Compile Include="Assets\General\Scripts\ScoreKeeper.cs" />
     <Compile Include="Assets\LooseCollider\Scripts\LooseCollider.cs" />
+    <Compile Include="Assets\NameEntry\Scripts\NameEntry.cs" />
     <Compile Include="Assets\PlayerPaddle\Scripts\PlayerPaddle.cs" />
+    <Compile Include="Assets\Scoreboard\Scripts\Scoreboard.cs" />
+    <Compile Include="Assets\Scoreboard\Scripts\ScoreboardDisplayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

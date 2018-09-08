@@ -21,14 +21,6 @@ public class ScoreKeeper : MonoBehaviour
   #endregion
 
 
-  // ---------------------------------------------------------------------------------------------------------------------
-  // Serialized fields
-  // ---------------------------------------------------------------------------------------------------------------------
-  #region
-
-  #endregion
-
-
   // ---------------------------------------------------------------------------------------------------------------------  
   // Private fields                  
   // ---------------------------------------------------------------------------------------------------------------------
@@ -38,6 +30,8 @@ public class ScoreKeeper : MonoBehaviour
   private static ScoreKeeper _instance;
   // Score text.
   private TextMeshProUGUI score_txt;
+  // Scoreboard.
+  Scoreboard scoreboard;
   // Current score.
   private int score = 0;
 
@@ -68,17 +62,20 @@ public class ScoreKeeper : MonoBehaviour
   // Event - on ball out.
   public void OnBallOut(float delay)
   {
-    //if(Instance.global_scoreboard.IsHighScore(Instance.score))
-    // {
-    //   Instance.global_scoreboard.SetCurrentScore(Instance.score);
-
-    // Load h
-    // LevelManager.Instance.
-    // }
-    // else
-    //  {
-    //Instance.level_manager.LoadLevel("Loose");
-    // }
+    // If given score is high enough to get to top scores.
+    if(Instance.scoreboard.IsTopScore(Instance.score))
+    {
+      // Save current score in top scores.
+      Instance.scoreboard.TopScoreSet(Instance.score);
+      // Load enter name level.
+      LevelManager.Instance.TopScoresNameLoad(0.0F);
+    }
+    // If given score is not high enough to get to high score.
+    else
+    {
+      // Load lose screen.
+      LevelManager.Instance.LoseLoad(0.0F);
+    }
   } // End of OnBallOut
 
   #endregion
@@ -124,6 +121,8 @@ public class ScoreKeeper : MonoBehaviour
     Instance.score_txt=GameObject.FindGameObjectWithTag("score_txt").GetComponent<TextMeshProUGUI>();
     // Set score.
     Instance.score_txt.text = Instance.score.ToString();
+    // Get scoreboard.
+    Instance.scoreboard=GameObject.FindObjectOfType<Scoreboard>();
   } // End of OnLevelWasLoaded
 
   #endregion
