@@ -26,7 +26,6 @@ public class Scoreboard : MonoBehaviour
   // Set top score.
   public void TopScoreSet(int score)
   {
-    Debug.Log("score set to: "+score.ToString());
     // Set top score.
     top_score=score;
   } // End of TopScoreSet
@@ -47,7 +46,6 @@ public class Scoreboard : MonoBehaviour
   // Claim top score.
   public void TopScoreClaim(string player_name,string player_nick)
   {
-    Debug.Log("claimed");
     // Create new score data.
     ScoreboardData scoreboard_data = new ScoreboardData(top_score,player_name,player_nick,DateTime.Now);
     // Add score to list.

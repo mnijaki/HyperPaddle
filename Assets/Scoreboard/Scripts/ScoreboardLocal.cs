@@ -35,7 +35,6 @@ public class ScoreboardLocal : MonoBehaviour
   // Set top score.
   public void TopScoreSet(int score)
   {
-    Debug.Log("LOCAL TopScoreSet: "+score.ToString());
     // Set top score.
     this.data.top_score=score;
   } // End of TopScoreSet
@@ -43,27 +42,25 @@ public class ScoreboardLocal : MonoBehaviour
   // Return info if given score is high enough to get to top scores.
   public bool IsTopScore(int score)
   {
-    Debug.Log("LOCAL IsTopScore: "+score.ToString());
+    // TO_DO: Belov code will give errors if two new players will have the same score (key unique error)
+
     // Get top five scores.
     var top_five = this.data.top_scores.Reverse().Take(5);
     // If there is any score.
     if(top_five.Any())
     {
-      Debug.Log("LOCAL IsTopScore2: "+score.ToString());
       return (score > top_five.Last().Value.score);
     }
     // If there is no score.
     else
     {
-      Debug.Log("LOCAL IsTopScor3e: "+score.ToString());
-      return false;
+      return true;
     }
   } // End of IsTopScore
 
   // Claim top score.
   public void TopScoreClaim(string player_name,string player_nick)
   {
-    Debug.Log("LOCAL TopScoreClaim: "+player_name.ToString());
     // Create new score data.
     ScoreboardData scoreboard_data = new ScoreboardData(this.data.top_score,player_name,player_nick,DateTime.Now);
     // Add score to list.
@@ -73,7 +70,6 @@ public class ScoreboardLocal : MonoBehaviour
   // Return list of top scores.
   public SortedList<int,ScoreboardData> TopScoresGet()
   {
-    Debug.Log("LOCAL TopScoresGet: "+this.data.top_scores);
     // Return top scores.
     return this.data.top_scores;
   } // End of TopScoresGet

@@ -37,10 +37,6 @@ public class ScoreboardDisplayer : MonoBehaviour
     // String builder holding top scores.
     StringBuilder tmp = new StringBuilder("");
     // Loop over top 5 scores.
-    foreach(KeyValuePair<int,ScoreboardData> item in top_scores)
-    {
-      Debug.Log(item.Value.player_name +" (" +item.Value.score +")  " +item.Value.player_nick +"  " +item.Value.score_datetime);
-    }
     foreach(KeyValuePair<int,ScoreboardData> item in top_scores.Reverse().Take(5))
     {
       // Actualize text.
