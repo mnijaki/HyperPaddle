@@ -45,11 +45,11 @@ public class MusicManager : MonoBehaviour
     StartCoroutine(ClipPlayWithDelay(clip,delay,is_looped));
   } // End of ClipPlay
 
-  // Pause clip.
-  public void ClipPause()
+  // Stop clip.
+  public void ClipStop()
   {
     Instance.audio_source.Stop();
-  } // End of ClipPause
+  } // End of ClipStop
 
   // Change volume.
   public void VolumeChange(float volume)
@@ -57,10 +57,12 @@ public class MusicManager : MonoBehaviour
     Instance.audio_source.volume=volume;
   } // End of VolumeChange
 
-  // Play clip at point.
+  // Play clip at point (added this method, because in Unity 'ClipPlayAtPoint()' method you cannot change spatial blend
+  // and other settings).
   public AudioSource ClipPlayAtPoint(Vector3 pos, float spatial_blend, AudioClip clip)
   {
-    // Create game object.
+    // MN:TO_DO:2018/09/10: Add pooling.
+    // Create temporary game object.
     GameObject go = new GameObject("TmpAudio");
     // Set position.
     go.transform.position = pos;
@@ -74,7 +76,7 @@ public class MusicManager : MonoBehaviour
     audio_source.Play();
     // Destory game object after clip is ended.
     Destroy(go,clip.length);
-    // Return audio source (will give abilty to chane more properties of this audio source).
+    // Return audio source (will give abilty to change more properties of audio source).
     return audio_source;
   } // End of ClipPlayAtPoint
 
@@ -107,7 +109,8 @@ public class MusicManager : MonoBehaviour
     // Get audio source.
     Instance.audio_source=Instance.GetComponent<AudioSource>();
     // Set volume from player preferences.
-  //  Instance.audio_source.volume=PlayerPrefsManager.MasterVolumeGet();
+    // MN:TO_DO:2018/09/10: Uncomment when you add player prefs.
+    // Instance.audio_source.volume=PlayerPrefsManager.MasterVolumeGet();
   } // End of Start
 
   // Play clip with delay.

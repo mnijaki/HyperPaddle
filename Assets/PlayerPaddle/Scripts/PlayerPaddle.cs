@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+// Player paddle.
 public class PlayerPaddle : MonoBehaviour
 {
   // ---------------------------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public class PlayerPaddle : MonoBehaviour
     this.dist_from_camera_to_paddle = this.transform.position.z - this.game_camera.transform.position.z;
   } // End of Start
 
-  // On mouse drag.
+  // Event - on mouse drag.
   private void OnMouseDrag()
   {
     // Get mouse position.
@@ -47,7 +47,7 @@ public class PlayerPaddle : MonoBehaviour
     this.game_camera_script.ShiftAroundPaddle(pos);
   } // End of OnMouseDrag
 
-  // Get mouse coordinates.
+  // Get mouse world coordinates at given distance.
   private Vector3 GetMouseCoordinatesAtDistance(float distance)
   {
     // Get screen position.
@@ -58,7 +58,7 @@ public class PlayerPaddle : MonoBehaviour
     return world_pos;
   } // End of GetMouseCoordinatesAtDistance
 
-  // On collision.
+  // Event - on collision.
   private void OnCollisionExit(Collision col)
   {
     // Increase score.
@@ -67,4 +67,4 @@ public class PlayerPaddle : MonoBehaviour
 
   #endregion
 
-}
+} // End of PlayerPaddle

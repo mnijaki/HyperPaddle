@@ -11,12 +11,12 @@ public class Ball : MonoBehaviour
   // Ball initial velocity.
   [SerializeField]
   [Tooltip("Ball initial velocity")]
-  private Vector3 init_speed = new Vector3(20.0F,10.0F,-60.0F);
+  private Vector3 init_velocity = new Vector3(20.0F,10.0F,-60.0F);
   // Speed multiplier.
   [SerializeField]
-  [Range(1.0f,1.1f)]
+  [Range(1.0F,1.1F)]
   [Tooltip("Speed multiplier")]
-  private float speed_multiplier = 1.02F;
+  private float speed_multiplier = 1.01F;
 
   #endregion
 
@@ -47,7 +47,7 @@ public class Ball : MonoBehaviour
     // Get rigidbody.
     this.rbdy=this.GetComponent<Rigidbody>();
     // Set initial velocity.
-    this.GetComponent<Rigidbody>().velocity=this.init_speed;
+    this.rbdy.velocity=this.init_velocity;
 	} // End of Start
 
   // On collision.

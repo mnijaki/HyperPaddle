@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
+// Score keeper (currently little bit similar to 'GameManager' in behaviour).
 public class ScoreKeeper : MonoBehaviour
 {
   // ---------------------------------------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ public class ScoreKeeper : MonoBehaviour
   // Increase score value.
   public void ScoreIncrease(int val)
   {
-    // Actualize score.
+    // Increase score value.
     Instance.score += val;
     // Set text.
     Instance.score_txt.text = Instance.score.ToString();
@@ -67,14 +68,14 @@ public class ScoreKeeper : MonoBehaviour
     {
       // Save current score in top scores.
       Instance.scoreboard.TopScoreSet(Instance.score);
-      // Load enter name level.
-      LevelManager.Instance.TopScoresNameLoad(0.0F);
+      // Load top scores scene with input fields.
+      LevelManager.Instance.SceneLoad(LevelManager.Scenes.TOP_SCORES_INPUT,0.0F);
     }
     // If given score is not high enough to get to high score.
     else
     {
       // Load lose screen.
-      LevelManager.Instance.LoseLoad(0.0F);
+      LevelManager.Instance.SceneLoad(LevelManager.Scenes.LOSE,0.0F);
     }
   } // End of OnBallOut
 

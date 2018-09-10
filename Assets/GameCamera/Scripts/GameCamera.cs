@@ -32,23 +32,4 @@ public class GameCamera: MonoBehaviour
 
   #endregion
 
-
-  // ---------------------------------------------------------------------------------------------------------------------
-  // Private methods                  
-  // ---------------------------------------------------------------------------------------------------------------------
-  #region
-
-  // Update (called once per frame).
-  private void Update()
-  {
-    //if (Input.GetKeyDown(KeyCode.UpArrow)) 
-    //{
-    //	factor = Mathf.Clamp(factor + 0.05f, 0.05f, 0.5f);
-    //} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-    //	factor = Mathf.Clamp(factor - 0.05f, 0.05f, 0.5f);
-    //}
-  } // End of Update
-
-  #endregion
-
 } // End of GameCamera

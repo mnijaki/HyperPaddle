@@ -19,8 +19,9 @@ public class LevelManager:MonoBehaviour
       return LevelManager._instance;
     }
   }
+  // MN:TO_DO:2018/09/10:Change if levels/scenes will are changed.
   // Enumeration of scenes.
-  public enum Scenes { NONE, SPLASH, LOSE, WIN, MAIN_MENU, PAUSE_MENU, OPTIONS, HELP, TopScores, TopScoresName };
+  public enum Scenes { NONE, SPLASH, LOSE, WIN, MAIN_MENU, PAUSE_MENU, OPTIONS, HELP, TOP_SCORES_INPUT, TOP_SCORES };
   // Enumeration of levels.
   public enum Lvls { NONE, Lvl_01, Lvl_02, Lvl_03 }
 
@@ -73,75 +74,21 @@ public class LevelManager:MonoBehaviour
 #endif
   } // End of Quit
 
-  // Load splash scene.
-  public void SplashLoad(float delay)
-  {
-    SceneLoad(Scenes.SPLASH,delay);
-  } // End of SplashLoad
-
-  // Load lose scene.
-  public void LoseLoad(float delay)
-  {
-    SceneLoad(Scenes.LOSE,delay);
-  } // End of LoseLoad
-
-  // Load win scene.
-  public void WinLoad(float delay)
-  {
-    SceneLoad(Scenes.WIN,delay);
-  } // End of WinLoad
-
-  // Load main menu scene.
-  public void MainMenuLoad(float delay)
-  {
-    SceneLoad(Scenes.MAIN_MENU,delay);
-  } // End of MainMenuLoad
-
-  // Load pause menu scene.
-  public void PauseMenuLoad(float delay)
-  {
-    SceneLoad(Scenes.PAUSE_MENU,delay);
-  } // End of PauseMenuLoad
-
-  // Load options scene.
-  public void OptionsLoad(float delay)
-  {
-    SceneLoad(Scenes.OPTIONS,delay);
-  } // End of OptionsLoad
-
-  // Load help scene.
-  public void HelpLoad(float delay)
-  {
-    SceneLoad(Scenes.HELP,delay);
-  } // End of HelpLoad
-
-  // Load top scores.
-  public void TopScoresLoad(float delay)
-  {
-    SceneLoad(Scenes.TopScores,delay);
-  } // End of TopScoresLoad
-
-  // Load top scores with name input.
-  public void TopScoresNameLoad(float delay)
-  {
-    SceneLoad(Scenes.TopScoresName,delay);
-  } // End of TopScoresNameLoad
-
-  // Load scene.
+  // Load scene with delay.
   public void SceneLoad(Scenes scene,float delay)
   {
     // Load scene with delay.
     StartCoroutine(SceneLoadWithDelay(scene,delay));
   } // End of SceneLoad
 
-  // Load next level.
+  // Load next level with delay.
   public void LvlLoadNext(float delay,bool is_async)
   {
     // Load next level with delay.
     StartCoroutine(LvlLoadNextWithDelay(delay,is_async));
   } // End of LvlLoadNext
 
-  // Reload current level.
+  // Reload current level with delay.
   public void LvlReload(float delay,bool is_async)
   {
     // Load next level with delay.
@@ -174,10 +121,11 @@ public class LevelManager:MonoBehaviour
   {
     // Make sure that game object will not be destroyed after loading next scene.
     GameObject.DontDestroyOnLoad(Instance.gameObject);
+    // MN:TO_DO:2018/09/10: Uncomment after loading panel will be added.
     // Get loading panel.
-  //  Instance.loading_panel=GameObject.FindGameObjectWithTag("loading_screen").GetComponentsInChildren<Transform>(true)[1].gameObject;
+    // Instance.loading_panel=GameObject.FindGameObjectWithTag("loading_screen").GetComponentsInChildren<Transform>(true)[1].gameObject;
     // Get progress slider.
-  //  Instance.progress_slider=Instance.loading_panel.GetComponentInChildren<Slider>();
+    // Instance.progress_slider=Instance.loading_panel.GetComponentInChildren<Slider>();
   } // End of Start
 
   // Load scene with delay.
@@ -188,7 +136,7 @@ public class LevelManager:MonoBehaviour
     {
       yield break;
     }
-    // Wait for 'time' seconds.
+    // Wait for seconds.
     yield return new WaitForSecondsRealtime(delay);
     // Set current scene.
     Instance.cur_scene=scene;
@@ -205,11 +153,11 @@ public class LevelManager:MonoBehaviour
     if((int)Instance.cur_lvl==Lvls.GetNames(typeof(Lvls)).Length-1)
     {
       // Load 'Win' level.
-      WinLoad(delay);
+      StartCoroutine(SceneLoadWithDelay(Scenes.WIN,delay));
       // Exit from function.
       yield break;
     }
-    // Wait for 'time' seconds.
+    // Wait for seconds.
     yield return new WaitForSecondsRealtime(delay);
     // Set current scene.
     Instance.cur_scene=Scenes.NONE;
@@ -241,7 +189,7 @@ public class LevelManager:MonoBehaviour
       // If duration of operation was shorter than 1 second.
       if(duration < 1.0F)
       {
-        // Yield to at least 1 full second.
+        // Yield to at least 1 full second (this is only for purpose of showing loading panel at least 1 second).
         yield return new WaitForSecondsRealtime(1.0F - duration);
       }
       // Disable loading panel.
@@ -258,7 +206,7 @@ public class LevelManager:MonoBehaviour
   // Reload current level with delay.
   private IEnumerator LvlReloadWithDelay(float delay,bool is_async)
   {
-    // Wait for 'time' seconds.
+    // Wait for seconds.
     yield return new WaitForSecondsRealtime(delay);
     // If asynchronouse mode.
     if(is_async)
@@ -286,7 +234,7 @@ public class LevelManager:MonoBehaviour
       // If duration of operation was shorter than 1 second.
       if(duration < 1.0F)
       {
-        // Yield to at least 1 full second.
+        // Yield to at least 1 full second (this is only for purpose of showing loading panel at least 1 second).
         yield return new WaitForSecondsRealtime(1.0F - duration);
       }
       // Disable loading panel.
@@ -333,13 +281,13 @@ public class LevelManager:MonoBehaviour
       {
         return "02_Help";
       }
-      case Scenes.TopScores:
+      case Scenes.TOP_SCORES_INPUT:
       {
-        return "04_TopScores";
+        return "04_00_TopScoresInput";
       }
-      case Scenes.TopScoresName:
+      case Scenes.TOP_SCORES:
       {
-        return "04_TopScoresName";
+        return "04_01_TopScores";
       }
       default:
       {
