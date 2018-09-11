@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3cbec0f5a6a614aa5ac6f3fef10060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 30fde194b14fec948a75e825073a9e32, type: 3}
+  clip: {fileID: 8300000, guid: b78faea23f4b2f640ae22c19e2012097, type: 3}
   delay: 0
 --- !u!4 &147825969
 Transform:
@@ -1529,6 +1529,11 @@ Prefab:
     - target: {fileID: 1057406790068704, guid: 45d5969dc680c20408754c6e1880d287, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 114388631358735688, guid: 45d5969dc680c20408754c6e1880d287,
+        type: 2}
+      propertyPath: init_velocity.z
+      value: -40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d5969dc680c20408754c6e1880d287, type: 2}

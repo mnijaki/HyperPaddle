@@ -111,7 +111,7 @@ public class ScoreKeeper : MonoBehaviour
   private void OnLevelWasLoaded(int level)
   {
     // If not game level.
-    if(LevelManager.Instance.CurLvlGet()== LevelManager.Lvls.NONE)
+    if(LevelManager.Instance.CurLvlGet() == LevelManager.Lvls.NONE)
     {
       // Reset score.
       Instance.score=0;

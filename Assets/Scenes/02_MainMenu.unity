@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3cbec0f5a6a614aa5ac6f3fef10060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 23fb65b067a8d6747a9b9fd2f809cae4, type: 3}
+  clip: {fileID: 8300000, guid: 7e8510fa1dbefb74eafca9d864b23eef, type: 3}
   delay: 0
 --- !u!4 &1600617642
 Transform:

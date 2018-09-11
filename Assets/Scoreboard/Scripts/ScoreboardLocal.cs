@@ -7,6 +7,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
 
 
+// ***********************************************************************************************************************
+//                                                    INFO
+// ***********************************************************************************************************************
+//
+// * We serialize data to binary file, becouse dictionary is not so simple to save as xml or json.
+// * 'Application.persistentDataPath()' points to :
+//   - %userprofile%\AppData\Local\Packages\<productname>\LocalState -> on Android, iOS, Windows
+//   - ~/Library/Application Support/company name/product name -> on Mac
+// * 'Path.Combine()' combines to strings into path (platform independant, eg linux, windows and mac use 
+//   backslashes and slashes diffrently).
+// * Current path: C:\Users\Marek\AppData\LocalLow\DefaultCompany\HyperPaddle\
+//
+// ***********************************************************************************************************************
+
+
 // Local scoreboard (saved to file on local disc).
 public class ScoreboardLocal : MonoBehaviour
 {
@@ -17,11 +32,7 @@ public class ScoreboardLocal : MonoBehaviour
 
   // Scoreboard file data.
   ScoreboardFileData data;
-  // 'Application.persistentDataPath()' points to :
-  // * %userprofile%\AppData\Local\Packages\<productname>\LocalState -> on Android, iOS, Windows
-  // * ~/Library/Application Support/company name/product name -> on Mac
-  // 'Path.Combine()' combines to strings into path (platform independant, eg linux, windows and mac use 
-  // backslashes and slashes diffrently).
+  // File path.
   private string file_path;
 
   #endregion
@@ -42,14 +53,18 @@ public class ScoreboardLocal : MonoBehaviour
   // Return info if given score is high enough to get to top scores.
   public bool IsTopScore(int score)
   {
-    // TO_DO: Belov code will give errors if two new players will have the same score (key unique error)
+    // TO_DO: Belov code will return true only if player have higher value
+    // than current highest value. You can change it if you want to so 
+    // if current top scores are 1,3,4,5,6 and someone have 2 he will get
+    // to top scores. If you do so you must also change 'TopScoresSet' etc...
 
     // Get top five scores.
-    var top_five = this.data.top_scores.Reverse().Take(5);
+    var top_five = this.data.top_scores.Take(5);
     // If there is any score.
     if(top_five.Any())
     {
-      return (score > top_five.Last().Value.score);
+      //return (score > top_five.Last().score);
+      return (score > top_five.First().score);
     }
     // If there is no score.
     else
@@ -64,11 +79,11 @@ public class ScoreboardLocal : MonoBehaviour
     // Create new score data.
     ScoreboardData scoreboard_data = new ScoreboardData(this.data.top_score,player_name,player_nick,DateTime.Now);
     // Add score to list.
-    this.data.top_scores.Add(this.data.top_score,scoreboard_data);
+    this.data.top_scores.Insert(0,scoreboard_data);
   } // End of TopScoreClaim
 
   // Return list of top scores.
-  public SortedList<int,ScoreboardData> TopScoresGet()
+  public List<ScoreboardData> TopScoresGet()
   {
     // Return top scores.
     return this.data.top_scores;
@@ -256,7 +271,7 @@ public class ScoreboardLocal : MonoBehaviour
     // Current top score.
     public int top_score = 0;
     // List of top scores.
-    public SortedList<int,ScoreboardData> top_scores = new SortedList<int,ScoreboardData>();
+    public List<ScoreboardData> top_scores = new List<ScoreboardData>();
   } // End of ScoreboardFileData
 
   #endregion
