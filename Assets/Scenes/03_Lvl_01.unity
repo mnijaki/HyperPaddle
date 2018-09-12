@@ -1496,7 +1496,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4659106911180424, guid: 45d5969dc680c20408754c6e1880d287, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4659106911180424, guid: 45d5969dc680c20408754c6e1880d287, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1504,7 +1504,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4659106911180424, guid: 45d5969dc680c20408754c6e1880d287, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4659106911180424, guid: 45d5969dc680c20408754c6e1880d287, type: 2}
       propertyPath: m_LocalRotation.x

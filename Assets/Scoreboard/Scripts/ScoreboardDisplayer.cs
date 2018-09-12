@@ -21,12 +21,12 @@ public class ScoreboardDisplayer : MonoBehaviour
 
 
   // ---------------------------------------------------------------------------------------------------------------------  
-  // Private methods
+  // Public methods
   // ---------------------------------------------------------------------------------------------------------------------
   #region
 
-  // Initialization.
-  private void Start()
+  // Display score.
+  public void ScoreDisplay()
   {
     // TO_DO: All ot this code should be moved to update of event function when you get score
     // data from databse (because getting scores online can return values after some time).
@@ -47,7 +47,7 @@ public class ScoreboardDisplayer : MonoBehaviour
     }
     // Set text.
     this.top_scores_txt.text = tmp.ToString();
-  } // End of Start
+  } // End of ScoreDisplay
 
   #endregion
 

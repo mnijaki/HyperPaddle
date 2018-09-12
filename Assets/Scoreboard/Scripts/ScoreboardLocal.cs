@@ -18,6 +18,7 @@ using System.Linq;
 // * 'Path.Combine()' combines to strings into path (platform independant, eg linux, windows and mac use 
 //   backslashes and slashes diffrently).
 // * Current path: C:\Users\Marek\AppData\LocalLow\DefaultCompany\HyperPaddle\
+//   or :          C:/Users/Marek/AppData/LocalLow/MusliComp/HyperPaddle\HyperPaddle_Topcores.dat
 //
 // ***********************************************************************************************************************
 
@@ -104,6 +105,12 @@ public class ScoreboardLocal : MonoBehaviour
     this.file_path = Path.Combine(Application.persistentDataPath,"HyperPaddle_Topcores.dat");
     // Read from file.
     ReadBinFromFile();
+    // If there is  'ScoreboardDisplayer'.
+    if(GameObject.FindObjectOfType<ScoreboardDisplayer>())
+    {
+      // Display score.
+      GameObject.FindObjectOfType<ScoreboardDisplayer>().ScoreDisplay();
+    }
   } // End of Start
 
   // Write to file (exist only for purpose of learning).
@@ -205,6 +212,15 @@ public class ScoreboardLocal : MonoBehaviour
       // Throw error.
       Debug.LogException(e);
     }
+    catch(Exception e)
+    {
+      // Create default scoreboard file data.
+      this.data=new ScoreboardFileData();
+      // Write info to console.
+      Debug.Log("Unhandled error when reading from file");
+      // Throw error.
+      Debug.LogException(e);
+    }
   } // End of ReadFromFile
 
   // Read binary data from file.
@@ -239,6 +255,15 @@ public class ScoreboardLocal : MonoBehaviour
       this.data=new ScoreboardFileData();
       // Write info to console.
       Debug.Log("Error desarialising file");
+      // Throw error.
+      Debug.LogException(e);
+    }
+    catch(Exception e)
+    {
+      // Create default scoreboard file data.
+      this.data=new ScoreboardFileData();
+      // Write info to console.
+      Debug.Log("Unhandled error when reading from file");
       // Throw error.
       Debug.LogException(e);
     }
